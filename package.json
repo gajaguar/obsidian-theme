@@ -1,0 +1,12 @@
+{
+	"name": "gajaguar-obsidian-theme",
+	"version": "0.0.1",
+	"description": "Very personalized theme to be used for me on Obsidian.",
+	"author": "G.A.JAGUAR <dev@gajaguar.com>",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"version": "node version-bump.mjs && git add manifest.json versions.json",
+		"build": "THEME_NAME=$(jq -r .name manifest.json) && mkdir -p \"${OBSIDIAN__VAULT_PATH}/.obsidian/themes/${THEME_NAME}\" && cp theme.css manifest.json \"${OBSIDIAN__VAULT_PATH}/.obsidian/themes/${THEME_NAME}\""
+	}
+}
