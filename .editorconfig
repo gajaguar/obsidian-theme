@@ -1,10 +1,23 @@
-# top-most EditorConfig file
 root = true
 
 [*]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[{Makefile,*.mk}]
 indent_style = tab
+
+[*.py]
 indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Theme sources and packaging files are indented with 4-wide tabs upstream.
+[*.{css,json,mjs}]
+indent_style = tab
 tab_width = 4
