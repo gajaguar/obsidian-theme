@@ -1,114 +1,115 @@
-/* This is the main CSS file for your theme. */
+/*
+ * GAJAGUAR — Obsidian theme
+ *
+ * Architecture: this file only sets Obsidian's public CSS variables. Core
+ * components read those variables directly, so values set here reach every
+ * view (editor, reading view, sidebars, modals, menus, popovers) without
+ * per-component selectors or !important.
+ *
+ * Reference: https://docs.obsidian.md/Reference/CSS+variables/CSS+variables
+ */
 
 /* ------------------------------------------------------------------------- */
-/*                           --- Base Colors ---                             */
+/*                              --- Typography ---                           */
 /* ------------------------------------------------------------------------- */
 
+/*
+ * The *-theme hooks sit between the user's font override (Settings ›
+ * Appearance) and Obsidian's defaults, so a user-chosen font still wins.
+ * Generic fallbacks are appended by Obsidian itself.
+ */
+body {
+	--font-interface-theme: "Nunito", "Roboto";
+	--font-text-theme: "Nunito", "Roboto";
+	--font-monospace-theme: "FiraCode Nerd Font", "Roboto Mono";
+}
+
+/* Editing views (Live Preview / Source) use the monospace font; reading view keeps the text font. */
+.markdown-source-view.mod-cm6 {
+	--font-text: var(--font-monospace);
+}
+
+/* ------------------------------------------------------------------------- */
+/*                               --- Colors ---                              */
+/* ------------------------------------------------------------------------- */
+
+/* Accent is set as HSL so every derived variable (--color-accent-1/2, selection, focus, checkboxes) follows it. */
 .theme-light {
-  --background-primary: #ffffff;
-  --background-primary-alt: #f2f2f2;
-  --background-secondary: #f2f2f2;
-  --background-secondary-alt: #e6e6e6;
-  --text-normal: #2e2e2e;
-  --text-muted: #888888;
-  --text-faint: #cccccc;
-  --text-accent: #007aff;
-  --text-accent-hover: #0056b3;
-  --text-on-accent: #ffffff;
-  --interactive-normal: #f2f2f2;
-  --interactive-hover: #e6e6e6;
-  --interactive-accent: #007aff;
-  --interactive-accent-hover: #0056b3;
-  --background-modifier-border: #dddddd;
-  --background-modifier-border-hover: #cccccc;
-  --background-modifier-border-focus: #007aff;
-  --background-modifier-success: #28a745;
-  --background-modifier-error: #dc3545;
-  --background-modifier-error-hover: #c82333;
-  --background-modifier-cover: rgba(0, 0, 0, 0.8);
+	--accent-h: 211; /* #007aff */
+	--accent-s: 100%;
+	--accent-l: 50%;
+
+	--background-primary: #ffffff;
+	--background-primary-alt: #f2f2f2;
+	--background-secondary: #f2f2f2;
+	--background-secondary-alt: #e6e6e6;
+	--background-modifier-border: #dddddd;
+	--background-modifier-border-hover: #cccccc;
+	--background-modifier-success: #28a745;
+	--background-modifier-error: #dc3545;
+	--background-modifier-error-hover: #c82333;
+	--background-modifier-cover: rgba(0, 0, 0, 0.8);
+
+	--text-normal: #2e2e2e;
+	--text-muted: #888888;
+	--text-faint: #cccccc;
+	--text-on-accent: #ffffff;
+
+	--interactive-normal: #f2f2f2;
+	--interactive-hover: #e6e6e6;
 }
 
 .theme-dark {
-  --background-primary: #1e1e1e;
-  --background-primary-alt: #252525;
-  --background-secondary: #252525;
-  --background-secondary-alt: #333333;
-  --text-normal: #e6e6e6;
-  --text-muted: #999999;
-  --text-faint: #666666;
-  --text-accent: #00aaff;
-  --text-accent-hover: #0088cc;
-  --text-on-accent: #ffffff;
-  --interactive-normal: #252525;
-  --interactive-hover: #333333;
-  --interactive-accent: #00aaff;
-  --interactive-accent-hover: #0088cc;
-  --background-modifier-border: #444444;
-  --background-modifier-border-hover: #555555;
-  --background-modifier-border-focus: #00aaff;
-  --background-modifier-success: #28a745;
-  --background-modifier-error: #dc3545;
-  --background-modifier-error-hover: #c82333;
-  --background-modifier-cover: rgba(0, 0, 0, 0.8);
-}
+	--accent-h: 200; /* #00aaff */
+	--accent-s: 100%;
+	--accent-l: 50%;
 
+	--background-primary: #1e1e1e;
+	--background-primary-alt: #252525;
+	--background-secondary: #252525;
+	--background-secondary-alt: #333333;
+	--background-modifier-border: #444444;
+	--background-modifier-border-hover: #555555;
+	--background-modifier-success: #28a745;
+	--background-modifier-error: #dc3545;
+	--background-modifier-error-hover: #c82333;
+	--background-modifier-cover: rgba(0, 0, 0, 0.8);
+
+	--text-normal: #e6e6e6;
+	--text-muted: #999999;
+	--text-faint: #666666;
+	--text-on-accent: #ffffff;
+
+	--interactive-normal: #252525;
+	--interactive-hover: #333333;
+}
 
 /* ------------------------------------------------------------------------- */
-/*                            --- Typography ---                             */
+/*                              --- Components ---                           */
 /* ------------------------------------------------------------------------- */
 
-/* This will change the font for the entire interface */
-.app-container {
-  font-size: 16px;
-  font-family: "Nunito", "Roboto", sans-serif;
+body {
+	/* Headings */
+	--h1-color: var(--text-accent);
+
+	/* Links */
+	--link-color: var(--text-accent);
+	--link-color-hover: var(--text-accent-hover);
+	--link-external-color: var(--text-accent);
+	--link-external-color-hover: var(--text-accent-hover);
+
+	/* Tags (applies to both editor and reading view) */
+	--tag-background: var(--interactive-accent);
+	--tag-background-hover: var(--interactive-accent-hover);
+	--tag-color: var(--text-on-accent);
+	--tag-color-hover: var(--text-on-accent);
+	--tag-padding-x: 6px;
+	--tag-padding-y: 2px;
+	--tag-radius: 4px;
 }
 
-/* This will change the font size of the main editor */
-.markdown-source-view {
-  font-size: 16px;
-  font-family: 'FiraCode Nerd Font', 'Roboto Mono', monospace;
-}
-
-/* This will change the color of headers */
-.cm-header-1, .markdown-preview-view h1 {
-  color: var(--text-accent);
-}
-
-
-/* ------------------------------------------------------------------------- */
-/*                        --- UI Element Selectors ---                       */
-/* ------------------------------------------------------------------------- */
-
-/* ----- Left Sidebar (File Explorer, Search, etc.) ----- */
-.mod-left-split {
-  background-color: var(--background-secondary);
-}
-
-/* ----- Right Sidebar (Backlinks, Outline, etc.) ----- */
-.mod-right-split {
-  background-color: var(--background-secondary);
-}
-
-/* ----- Header ----- */
+/* View header: no core variable exists for its background. */
 .view-header {
-  background-color: var(--background-primary-alt);
-  border-bottom: 1px solid var(--background-modifier-border);
-}
-
-/* ----- Editor ----- */
-.cm-s-obsidian {
-  background-color: var(--background-primary);
-}
-
-/* ----- Links ----- */
-.cm-link, .markdown-preview-view a {
-  color: var(--text-accent);
-}
-
-/* ----- Tags ----- */
-.cm-hashtag, a.tag {
-  background-color: var(--interactive-accent);
-  color: var(--text-on-accent);
-  padding: 2px 6px;
-  border-radius: 4px;
+	background-color: var(--background-primary-alt);
+	border-bottom: var(--border-width) solid var(--background-modifier-border);
 }
