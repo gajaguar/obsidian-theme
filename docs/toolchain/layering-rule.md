@@ -21,7 +21,7 @@ class of drift this rule exists to prevent.
 | checkmake                           | `mise.toml`                                | Go binary, no ecosystem in this repo               |
 | pre-commit                          | `mise.toml`                                | meta-tool; must run before any ecosystem is set up |
 | cspell, markdownlint-cli2           | `package.json`                             | Node dev deps, lockfile-managed                    |
-| okflint, typesafe                   | `uvx` in the `Makefile`                    | Python tools, run on demand, pinned in the target  |
+| okflint, typesafe                   | `uvx` in the `Makefile`                    | Python tools, run on demand, at `@latest`          |
 
 See [`rejected-install-backends.md`](rejected-install-backends.md) for the
 alternatives this decision ruled out.
